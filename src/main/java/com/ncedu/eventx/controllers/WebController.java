@@ -109,6 +109,11 @@ public class WebController {
         return "listItem";
     }
 
+    @GetMapping(value = "/update-event")
+    public String updateEvent(@RequestParam("id") int id) {
+        return "updateEvent";
+    }
+
     @GetMapping(value = "/login")
     public String loginBootstrap(Model model) {
         return "sign-in";

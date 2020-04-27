@@ -1,8 +1,5 @@
 package com.ncedu.eventx.services;
-import com.ncedu.eventx.models.DTO.EventDTO;
-import com.ncedu.eventx.models.DTO.EventForCreateDTO;
-import com.ncedu.eventx.models.DTO.EventWithItemsDTO;
-import com.ncedu.eventx.models.DTO.EventWithUsersDTO;
+import com.ncedu.eventx.models.DTO.*;
 import com.ncedu.eventx.models.entities.EventEntity;
 
 import java.util.List;
@@ -11,11 +8,9 @@ public interface EventsService {
 
     EventEntity createEvent(EventForCreateDTO createDTO);
 
-    EventDTO getEventById(int id);
+    boolean deleteEventById(int id);
 
-    List<EventDTO> getEventsList();
-
-    List<EventDTO> getEventsByUserId(int userId);
+    List<EventDTO> getEventsByUserId(int userId, String role);
 
     EventWithItemsDTO getEventWithItemsById(int id, String username);
 
@@ -23,7 +18,9 @@ public interface EventsService {
 
     List<EventWithItemsDTO> getEventsWithItemsList(List<EventEntity> eventEntityList);
 
-    EventWithUsersDTO getEventWithUsers(int id);
-
     List<EventDTO> getLastEventsByCreator(int userId);
+
+    boolean cancelEventById(int eventId);
+
+    EventForUpdateDTO updateEventById(EventForUpdateDTO event);
 }

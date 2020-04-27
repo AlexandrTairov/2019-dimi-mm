@@ -29,14 +29,21 @@
                         <img src="icons/text.png" alt="logo" height="30px">
                     </a>
                 </div>
-                <div class="brand">
+                <div class="brand my-header">
                     <a href="/add-event" class="submit-item">
                         <button class="btn btn-default">Добавить событие</button>
                     </a>
                 </div>
-                <div class="brand">
+                <div class="brand my-header">
+                    <a href="/" class="submit-item">
+                        <button class="btn btn-default">Поиск событий</button>
+                    </a>
+                </div>
+                <div class="brand my-header">
                     <nav class="navigation-items">
-                        <div class="navigation nav-header"></div>
+                        <div class="navigation nav-header">
+
+                        </div>
                     </nav>
                 </div>
             </div>
@@ -53,7 +60,10 @@
                             <aside id="sidebar">
                                 <ul class="navigation-sidebar list-unstyled">
                                     <li id="all-events">
-                                        <a><i class="fa fa-folder"></i><span>Все мероприятия</span></a>
+                                        <a><i class="fa fa-folder"></i><span>Мероприятия: гость</span></a>
+                                    </li>
+                                    <li id="all-events-creator">
+                                        <a><i class="fa fa-folder"></i><span>Мероприятия: организатор</span></a>
                                     </li>
                                     <li id="all-items">
                                         <a><i class="fa fa-check"></i><span>Избранное</span></a>
@@ -90,12 +100,21 @@
 
         <script type="text/template" class="templateTitle">
             <li><a href="/user?id=<%= item.id %>"><h1 class="page-title"><%- item.name %></h1></a></li>
-            <li class="active"><a href="/user-items?id=<%= item.id %>"><h1 class="page-title">Мероприятия</h1></a></li>
+            <li class="active"><a href="/user-items?id=<%= item.id %>">
+                <div id="templateTitleClass" class="templateTitleClass">
+                    <h1 class="page-title">Мероприятия</h1>
+                </div>
+            </a></li>
         </script>
 
-        <script type="text/template" class="templateEvent">
+        <script type="text/template" class="templateTitleLine">
+            <h1 class="page-title"><%- item.name %></h1>
+        </script>
+
+
+            <script type="text/template" class="templateEvent">
             <div class="item list">
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <div class="wrapper">
                         <h3 class="item-name"><%- item.city.name %></h3>
                         <header class="page-title">
@@ -112,12 +131,19 @@
                         <figure><%- _.identity(dateWrite(item.timeStart)) %></figure>
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div class="wrapper">
+                        <div class="form-group">
+                            <img src="icons/close.png" id="del-event-img<%= item.id %>" alt="Удалить">
+                        </div>
+                    </div>
+                </div>
             </div>
         </script>
 
         <script type="text/template" class="templateItem">
             <div class="item list">
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <div class="wrapper">
                         <a href="/event?id=<%= item.parent.id %>"><h3 class="item-name">Мероприятие: <%- item.parent.name %></h3></a>
                         <header class="page-title">
@@ -127,6 +153,27 @@
                             </div>
                         </header>
                         <figure><%- _.identity(dateWrite(item.timeStart)) %></figure>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="wrapper">
+                        <div class="form-group">
+                            <img src="icons/close.png" id="del-item-img<%= item.id %>" alt="Удалить" width="32px" height="32px">>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" class="templateEmpty">
+            <div class="item list">
+                <div class="col-md-12">
+                    <div class="wrapper">
+                        <header class="page-title">
+                            <div class="title">
+                                <h1><%- item.name %></h1>
+                            </div>
+                        </header>
                     </div>
                 </div>
             </div>
@@ -185,16 +232,16 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="js/before.load.js"></script>
-<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/base/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="js/base/before.load.js"></script>
+<script type="text/javascript" src="js/base/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/base/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript" src="js/underscore.js"></script>
-<script type="text/javascript" src="js/moment.js"></script>
+<script type="text/javascript" src="js/base/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="js/base/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="js/base/custom.js"></script>
+<script type="text/javascript" src="js/base/underscore.js"></script>
+<script type="text/javascript" src="js/base/moment.js"></script>
 <script type="text/javascript" src="js/my-scripts/checkAuth.js"></script>
 <script type="text/javascript" src="js/my-scripts/personalItems.js"></script>
 <script type="text/javascript" src="js/my-scripts/dateWriteFunc.js"></script>
